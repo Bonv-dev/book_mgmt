@@ -18,8 +18,9 @@ class StepsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create step" do
+    new_name = @step.name+"_NEW"
     assert_difference("Step.count") do
-      post steps_url, params: { step: { cabinet_id: @step.cabinet_id, enabled: @step.enabled, name: @step.name } }
+      post steps_url, params: { step: { cabinet_id: @step.cabinet_id, enabled: @step.enabled, name: new_name } }
     end
 
     assert_redirected_to step_url(Step.last)
@@ -40,9 +41,18 @@ class StepsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to step_url(@step)
   end
 
-  test "should destroy step" do
-    assert_difference("Step.count", -1) do
+  test "should not destroy step" do
+    assert_no_difference "Step.count" do
       delete step_url(@step)
+    end
+
+    assert_response :unprocessable_entity
+  end
+
+  test "should destroy step" do
+    step_deletable = steps(:deletable)
+    assert_difference("Step.count", -1) do
+      delete step_url(step_deletable)
     end
 
     assert_redirected_to steps_url

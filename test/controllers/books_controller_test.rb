@@ -19,8 +19,9 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create book" do
+    new_isbn = @book.isbn+"1"
     assert_difference("Book.count") do
-      post books_url, params: { book: { category_id: @book.category_id, enabled: @book.enabled, isbn: @book.isbn, memo: @book.memo, name: @book.name, step_id: @book.step_id } }
+      post books_url, params: { book: { category_id: @book.category_id, enabled: @book.enabled, isbn: new_isbn, memo: @book.memo, name: @book.name, step_id: @book.step_id } }
     end
 
     assert_redirected_to book_url(Book.last)
@@ -41,11 +42,11 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to book_url(@book)
   end
 
-  test "should destroy book" do
-    assert_difference("Book.count", -1) do
+  test "should not destroy book" do
+    assert_no_difference "Book.count" do
       delete book_url(@book)
     end
 
-    assert_redirected_to books_url
+    assert_response :unprocessable_entity
   end
 end

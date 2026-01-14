@@ -18,8 +18,9 @@ class CabinetsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create cabinet" do
+    new_name = @cabinet.name+"_NEW"
     assert_difference("Cabinet.count") do
-      post cabinets_url, params: { cabinet: { enabled: @cabinet.enabled, floor_id: @cabinet.floor_id, name: @cabinet.name } }
+      post cabinets_url, params: { cabinet: { enabled: @cabinet.enabled, floor_id: @cabinet.floor_id, name: new_name } }
     end
 
     assert_redirected_to cabinet_url(Cabinet.last)
@@ -40,9 +41,18 @@ class CabinetsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to cabinet_url(@cabinet)
   end
 
-  test "should destroy cabinet" do
-    assert_difference("Cabinet.count", -1) do
+  test "should not destroy cabinet" do
+    assert_no_difference "Cabinet.count" do
       delete cabinet_url(@cabinet)
+    end
+
+    assert_response :unprocessable_entity
+  end
+
+  test "should destroy cabinet" do
+    cabinet_deletable = cabinets(:deletable)
+    assert_difference("Cabinet.count", -1) do
+      delete cabinet_url(cabinet_deletable)
     end
 
     assert_redirected_to cabinets_url

@@ -1,17 +1,17 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  enabled: false
-  name: MyString
-  isbn: MyString
+  enabled: true
+  name: こころ
+  isbn: "978-4101010014"
   category: one
   step: one
   memo: MyString
 
 two:
-  enabled: false
-  name: MyString
-  isbn: MyString
+  enabled: true
+  name: 人間失格
+  isbn: "978-4101006017"
   category: two
   step: two
   memo: MyString

@@ -18,8 +18,9 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create category" do
+    new_name = @category.name+"_NEW"
     assert_difference("Category.count") do
-      post categories_url, params: { category: { enabled: @category.enabled, name: @category.name } }
+      post categories_url, params: { category: { enabled: @category.enabled, name: new_name } }
     end
 
     assert_redirected_to category_url(Category.last)
@@ -40,9 +41,18 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to category_url(@category)
   end
 
-  test "should destroy category" do
-    assert_difference("Category.count", -1) do
+  test "should not destroy category" do
+    assert_no_difference "Category.count" do
       delete category_url(@category)
+    end
+
+    assert_response :unprocessable_entity
+  end
+
+  test "should destroy category" do
+    category_deletable = categories(:deletable)
+    assert_difference("Category.count", -1) do
+      delete category_url(category_deletable)
     end
 
     assert_redirected_to categories_url

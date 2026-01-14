@@ -18,8 +18,9 @@ class FloorsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create floor" do
+    new_name = @floor.name+"_NEW"
     assert_difference("Floor.count") do
-      post floors_url, params: { floor: { enabled: @floor.enabled, name: @floor.name } }
+      post floors_url, params: { floor: { enabled: @floor.enabled, name: new_name } }
     end
 
     assert_redirected_to floor_url(Floor.last)
@@ -40,9 +41,18 @@ class FloorsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to floor_url(@floor)
   end
 
-  test "should destroy floor" do
-    assert_difference("Floor.count", -1) do
+  test "should not destroy floor" do
+    assert_no_difference "Floor.count" do
       delete floor_url(@floor)
+    end
+
+    assert_response :unprocessable_entity
+  end
+
+  test "should destroy floor" do
+    floor_deletable = floors(:deletable)
+    assert_difference("Floor.count", -1) do
+      delete floor_url(floor_deletable)
     end
 
     assert_redirected_to floors_url
