@@ -4,7 +4,8 @@ class BooksController < ApplicationController
 
   # GET /books or /books.json
   def index
-    @books = policy_scope(Book)
+    @q = policy_scope(Book).ransack(params.fetch(:q, {}))
+    @books = @q.result
   end
 
   # GET /books/1 or /books/1.json

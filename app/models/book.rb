@@ -8,4 +8,8 @@ class Book < ApplicationRecord
   validates :isbn, presence: true, uniqueness: true, format: { with: /\A(?:\d[\d-]{8,}[\dXx]|\d[\d-]{11,}\d)\z/ }
 
   include CommonScopes
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["name", "isbn", "category_id", "memo" ]
+  end
 end

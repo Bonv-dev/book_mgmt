@@ -4,6 +4,38 @@
 
 <h1>Books</h1>
 
+<%= search_form_for @q, url: books_path, method: :get do |form| %>
+  <p>絞込み (表示数：<%= @books.length %>冊)</p>
+  <span>
+    <%= form.label :name_cont, "Name" %>
+    <%= form.search_field :name_cont %>
+  </span>
+
+  <span>
+    <%= form.label :isbn_cont, "ISBN" %>
+    <%= form.search_field :isbn_cont %>
+  </span>
+
+  <span>
+    <%= form.label :category_id_cont, "Category" %>
+    <%= form.select :category_id_eq,
+      @category_options,
+      include_blank: "すべて" 
+    %>
+  </span>
+
+  <span>
+    <%= form.label :memo_cont, "Memo" %>
+    <%= form.search_field :memo_cont %>
+  </span>
+
+  <span>
+    <%= form.submit "検索" %>
+    <%= link_to "クリア", books_path %>
+  </span>
+<% end %>
+<hr>
+
 <div id="books">
   <% @books.each do |book| %>
     <%= render book %>
