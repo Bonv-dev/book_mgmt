@@ -1,9 +1,6 @@
 class FloorsController < ApplicationController
   before_action :set_floor, only: %i[ show edit update destroy ]
 
-  # CanCanCan で権限チェック
-  load_and_authorize_resource
-
   # GET /floors or /floors.json
   def index
     @floors = Floor.all

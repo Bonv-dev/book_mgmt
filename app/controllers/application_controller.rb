@@ -2,10 +2,6 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :load_settings
 
-  rescue_from CanCan::AccessDenied do |exception|
-    redirect_to root_path, alert: "権限がありません。", status: :see_other
-  end
-
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   allow_browser versions: :modern
 
