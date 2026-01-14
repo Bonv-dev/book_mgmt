@@ -1,3 +1,8 @@
+<div 
+   data-controller="select-place"
+   data-select-place-url-value="<%= select_place_steps_path %>"
+   data-select-place-is-step-form-exist-value="false"
+>
 <%= form_with(model: step) do |form| %>
   <% if step.errors.any? %>
     <div style="color: red">
@@ -23,10 +28,19 @@
 
   <div>
     <%= form.label :cabinet_id, style: "display: block" %>
-    <%= form.select :cabinet_id, @cabinet_options, { include_blank: "選択してください" } %>
+    <%= select_tag :floor_id,
+      options_from_collection_for_select(@floors, :id, :name, step.cabinet&.floor_id),
+      include_blank: "選択してください",
+      data: {
+        action: "change->select-place#changeFloor",
+        select_place_target: "floor"
+      }
+    %>
+    <%= render partial: "select_place" %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit "Update Step", data: { action: "click->select-place#checkParams" } %>
   </div>
 <% end %>
+</div> <!-- select-place -->

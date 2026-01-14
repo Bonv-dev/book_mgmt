@@ -1,0 +1,15 @@
+<span id="select_place">
+  <%= select_tag "cabinet_id", 
+    options_from_collection_for_select(@cabinets, :id, :name, @cabinet&.id),
+    include_blank: "選択してください" ,
+    data: { 
+      action: "change->select-place#changeCabinet",
+      select_place_target: "cabinet" 
+    }
+  %>
+  <%= select_tag "book[step_id]", 
+    options_from_collection_for_select(@steps, :id, :name, @step&.id),
+    include_blank: "選択してください" ,
+    data: { select_place_target: "step" }
+  %>
+</span>

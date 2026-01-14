@@ -5,9 +5,17 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
   resources :logs
-  resources :books
+  resources :books do
+    collection do
+      get :select_place
+    end
+  end
   resources :categories
-  resources :steps
+  resources :steps do
+    collection do
+      get :select_place
+    end
+  end
   resources :cabinets
   resources :floors
   resources :users

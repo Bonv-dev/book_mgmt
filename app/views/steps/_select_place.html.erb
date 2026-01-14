@@ -1,0 +1,7 @@
+<span id="select_place">
+  <%= select_tag "step[cabinet_id]", 
+    options_from_collection_for_select(@cabinets, :id, :name, @cabinet&.id),
+    include_blank: "選択してください" ,
+    data: { select_place_target: "cabinet" }
+  %>
+</span>

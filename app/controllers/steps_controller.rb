@@ -16,6 +16,7 @@ class StepsController < ApplicationController
   def new
     @step = Step.new
     authorize @step
+    prepare_place
   end
 
   # GET /steps/1/edit
@@ -27,6 +28,7 @@ class StepsController < ApplicationController
   def create
     @step = Step.new(step_params)
     authorize @step
+    prepare_place
 
     respond_to do |format|
       if @step.save
@@ -69,15 +71,33 @@ class StepsController < ApplicationController
     end
   end
 
+  # GET /steps/select_place
+  def select_place
+    authorize Step
+
+    @cabinets = Cabinet.where(floor_id: params.expect(:floor_id))
+
+    respond_to do |format|
+      format.turbo_stream
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_step
       @step = Step.find(params.expect(:id))
+      prepare_place
     end
 
     def set_list
       @cabinet_list = Cabinet.floor_cabinet_list
       @cabinet_options = Cabinet.name_options
+    end
+
+    def prepare_place
+      @floors = Floor.all
+      @cabinet = @step&.cabinet
+      @cabinets = @step.cabinet&.floor&.cabinets || []
     end
 
     # Only allow a list of trusted parameters through.

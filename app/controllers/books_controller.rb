@@ -16,6 +16,7 @@ class BooksController < ApplicationController
   def new
     @book = Book.new
     authorize @book
+    prepare_place
   end
 
   # GET /books/1/edit
@@ -27,6 +28,7 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     authorize @book
+    prepare_place
 
     respond_to do |format|
       if @book.save
@@ -74,10 +76,24 @@ class BooksController < ApplicationController
     end
   end
 
+  # GET /books/select_place
+  def select_place
+    authorize Book
+
+    @cabinets = Cabinet.where(floor_id: params.expect(:floor_id))
+    @cabinet = Cabinet.find_by_id(params[:cabinet_id])
+    @steps = Step.where(cabinet_id: @cabinet&.id)
+
+    respond_to do |format|
+      format.turbo_stream
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_book
       @book = Book.find(params.expect(:id))
+      prepare_place
     end
 
     def set_list
@@ -85,6 +101,14 @@ class BooksController < ApplicationController
       @category_options = Category.name_options
       @step_list = Step.floor_cabinet_step_list
       @step_options = Step.name_options
+    end
+
+    def prepare_place
+      @floors = Floor.all
+      @step = @book.step
+      @steps = @step&.cabinet&.steps || []
+      @cabinet = @step&.cabinet
+      @cabinets = @cabinet&.floor&.cabinets || []
     end
 
     # Only allow a list of trusted parameters through.

@@ -19,6 +19,10 @@ class BookPolicy < ApplicationPolicy
     update?
   end
 
+  def select_place?
+    update?
+  end
+
   def destroy?
     user&.is_admin?
   end
