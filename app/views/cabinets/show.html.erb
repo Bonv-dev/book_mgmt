@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @cabinet %>
+
+<div>
+  <%= link_to "Edit this cabinet", edit_cabinet_path(@cabinet) %> |
+  <%= link_to "Back to cabinets", cabinets_path %>
+
+  <%= button_to "Destroy this cabinet", @cabinet, method: :delete %>
+</div>

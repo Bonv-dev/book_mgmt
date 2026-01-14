@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Floors" %>
+
+<h1>Floors</h1>
+
+<div id="floors">
+  <% @floors.each do |floor| %>
+    <%= render floor %>
+    <p>
+      <%= link_to "Show this floor", floor %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New floor", new_floor_path %>
