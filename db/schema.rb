@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_12_064148) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_12_064613) do
   create_table "books", force: :cascade do |t|
     t.integer "category_id", null: false
     t.datetime "created_at", null: false
@@ -30,6 +30,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_12_064148) do
     t.integer "floor_id", null: false
     t.string "name"
     t.datetime "updated_at", null: false
+    t.index ["floor_id", "name"], name: "index_cabinets_on_floor_id_and_name", unique: true
     t.index ["floor_id"], name: "index_cabinets_on_floor_id"
   end
 
@@ -63,6 +64,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_12_064148) do
     t.boolean "enabled", default: true
     t.string "name"
     t.datetime "updated_at", null: false
+    t.index ["cabinet_id", "name"], name: "index_steps_on_cabinet_id_and_name", unique: true
     t.index ["cabinet_id"], name: "index_steps_on_cabinet_id"
   end
 
