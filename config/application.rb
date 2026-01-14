@@ -38,5 +38,8 @@ module BookMgmt
     config.time_zone = "Tokyo"
 
     config.i18n.default_locale = :ja
+
+    # WEB common settings
+    config.x.settings = config_for(:my_settings).freeze
   end
 end

@@ -21,6 +21,11 @@
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+    <!-- WEB common settings for JavaScript -->
+    <script>
+      window.MySettings = <%= @my_settings.to_json.html_safe %>;
+    </script>
   </head>
 
   <body>

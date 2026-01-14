@@ -1,0 +1,18 @@
+shared:
+  status_storage: 1
+  status_lending: 2
+  status_discard: 3
+  status_list:
+    1: "利用可"
+    2: "貸出中"
+    3: "廃棄済"
+
+development:
+  web_name: "book_mgmt_dev"
+
+test:
+  web_name: "book_mgmt_test"
+
+production:
+  web_name: "book_mgmt"
+
