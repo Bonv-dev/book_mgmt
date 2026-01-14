@@ -5,7 +5,11 @@ class BooksController < ApplicationController
   # GET /books or /books.json
   def index
     @q = policy_scope(Book).ransack(params.fetch(:q, {}))
-    @books = @q.result
+    target_books = @q.result
+    @book_count = target_books.length
+    @books = target_books
+      .page(params[:page])
+      .per(@my_settings[:lines_per_page])
   end
 
   # GET /books/1 or /books/1.json

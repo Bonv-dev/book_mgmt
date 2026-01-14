@@ -5,7 +5,7 @@
 <h1>Books</h1>
 
 <%= search_form_for @q, url: books_path, method: :get do |form| %>
-  <p>絞込み (表示数：<%= @books.length %>冊)</p>
+  <p>絞込み (表示総数：<%= @book_count %>冊)</p>
   <span>
     <%= form.label :name_cont, "Name" %>
     <%= form.search_field :name_cont %>
@@ -35,7 +35,8 @@
   </span>
 <% end %>
 <hr>
-
+<%= paginate @books %>
+<hr>
 <div id="books">
   <% @books.each do |book| %>
     <%= render book %>
@@ -52,3 +53,6 @@
 <% if current_user.can_manage? %>
   <%= link_to "New book", new_book_path %>
 <% end %>
+
+<hr>
+<%= paginate @books %>
