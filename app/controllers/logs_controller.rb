@@ -14,7 +14,11 @@ class LogsController < ApplicationController
 
   # GET /logs/new
   def new
-    @log = Log.new
+    if params[:log].present?
+      @log = Log.new(log_params)
+    else
+      @log = Log.new
+    end
     authorize @log
   end
 

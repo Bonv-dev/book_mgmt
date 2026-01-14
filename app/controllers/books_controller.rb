@@ -21,6 +21,7 @@ class BooksController < ApplicationController
   def new
     @book = Book.new
     authorize @book
+    @latest_log = new_log(@book)
     prepare_place
   end
 
@@ -37,6 +38,7 @@ class BooksController < ApplicationController
 
     respond_to do |format|
       if @book.save
+        new_log(@book).save!
         format.html { redirect_to @book, notice: "Book was successfully created." }
         format.json { render :show, status: :created, location: @book }
       else
@@ -98,6 +100,7 @@ class BooksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_book
       @book = Book.find(params.expect(:id))
+      @latest_log = Log.latest(@book.id)
       prepare_place
     end
 
@@ -115,6 +118,10 @@ class BooksController < ApplicationController
       @steps = @step&.cabinet&.steps || []
       @cabinet = @step&.cabinet
       @cabinets = @cabinet&.floor&.cabinets || []
+    end
+
+    def new_log(book)
+      Log.new(status: @my_settings[:status_storage], book: book, user: current_user)
     end
 
     # Only allow a list of trusted parameters through.

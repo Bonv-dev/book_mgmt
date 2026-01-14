@@ -18,7 +18,12 @@
 
   <div>
     <%= form.label :status, style: "display: block" %>
-    <%= @status_list[@latest_statuses[book.id]] %>
+    <%= @status_list[@latest_log.status] %>
+    <%= link_to "ステータス変更",
+        new_log_path(
+          log: { status: @latest_log.status, book_id: book.id, user_id: @latest_log.user_id }
+        )
+    %>
   </div>
 
   <div>
