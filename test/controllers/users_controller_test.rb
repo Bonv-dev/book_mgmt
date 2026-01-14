@@ -16,7 +16,9 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-# ユーザーの新規登録は GEM Device の領域なので、とりあえず外す。
+# ユーザーの新規登録は GEM Device の担当なので、
+# users\registrations_controller_test.rb で実施する。
+#
 #  test "should create user" do
 #    assert_difference("User.count") do
 #      post users_url, params: { user: { enabled: @user.enabled, is_admin: @user.is_admin, is_librarian: @user.is_librarian, name: @user.name } }
