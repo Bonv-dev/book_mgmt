@@ -69,3 +69,4 @@ gem "fiddle", require: false
 
 gem "devise"
 gem "devise-i18n", "~> 1.15"
+gem "pundit", "~> 2.5"
