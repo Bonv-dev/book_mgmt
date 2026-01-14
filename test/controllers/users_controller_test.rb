@@ -2,7 +2,8 @@ require "test_helper"
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @user = users(:one)
+    @user = users(:admin)
+    sign_in @user
   end
 
   test "should get index" do

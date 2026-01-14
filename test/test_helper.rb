@@ -5,11 +5,24 @@ require "rails/test_help"
 module ActiveSupport
   class TestCase
     # Run tests in parallel with specified workers
-    parallelize(workers: :number_of_processors, with: :threads)
+    # 
+    # RuntimeError: Could not find a valid mapping for #<User id: 135138680
+    # のようにエラーになるので、parallel は止めておく。
+    #
+    #parallelize(workers: :number_of_processors, with: :threads)
+    parallelize(workers: 1)
 
     # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
     fixtures :all
 
     # Add more helper methods to be used by all tests here...
   end
+end
+
+class ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+end
+
+module TestConstants
+  DEFAULT_PASSWORD = "12345qaz"
 end

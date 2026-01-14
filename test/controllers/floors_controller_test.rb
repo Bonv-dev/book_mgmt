@@ -3,6 +3,8 @@ require "test_helper"
 class FloorsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @floor = floors(:one)
+    @user = users(:admin)
+    sign_in @user
   end
 
   test "should get index" do

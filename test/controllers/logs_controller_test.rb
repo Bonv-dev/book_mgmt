@@ -3,6 +3,8 @@ require "test_helper"
 class LogsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @log = logs(:one)
+    @user = users(:admin)
+    sign_in @user
   end
 
   test "should get index" do

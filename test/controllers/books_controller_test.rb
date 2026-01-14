@@ -3,8 +3,11 @@ require "test_helper"
 class BooksControllerTest < ActionDispatch::IntegrationTest
   setup do
     @book = books(:one)
+    @user = users(:admin)
+    sign_in @user
   end
 
+  # -n test_should_get_index
   test "should get index" do
     get books_url
     assert_response :success

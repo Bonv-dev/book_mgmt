@@ -1,13 +1,42 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  enabled: false
-  name: MyString
+  enabled: true
+  name: one
+  email: one@sample.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, TestConstants::DEFAULT_PASSWORD) %>
   is_admin: false
   is_librarian: false
 
 two:
-  enabled: false
-  name: MyString
+  enabled: true
+  name: two
+  email: two@sample.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, TestConstants::DEFAULT_PASSWORD) %>
   is_admin: false
   is_librarian: false
+
+admin:
+  enabled: true
+  name: admin
+  email: admin@sample.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, TestConstants::DEFAULT_PASSWORD) %>
+  is_admin: true
+  is_librarian: false
+
+librarian:
+  enabled: true
+  name: librarian
+  email: librarian@sample.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, TestConstants::DEFAULT_PASSWORD) %>
+  is_admin: false
+  is_librarian: true
+
+deletable:
+  enabled: true
+  name: deletable
+  email: deletable@sample.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, TestConstants::DEFAULT_PASSWORD) %>
+  is_admin: false
+  is_librarian: false
+
