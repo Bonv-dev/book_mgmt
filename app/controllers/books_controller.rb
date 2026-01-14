@@ -79,7 +79,7 @@ class BooksController < ApplicationController
     def set_list
       @category_list = Category.name_list
       @category_options = Category.name_options
-      @step_list = Step.name_list
+      @step_list = Step.floor_cabinet_step_list
       @step_options = Step.name_options
     end
 

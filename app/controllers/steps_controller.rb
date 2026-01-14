@@ -72,7 +72,7 @@ class StepsController < ApplicationController
     end
 
     def set_list
-      @cabinet_list = Cabinet.name_list
+      @cabinet_list = Cabinet.floor_cabinet_list
       @cabinet_options = Cabinet.name_options
     end
 
