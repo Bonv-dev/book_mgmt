@@ -9,6 +9,10 @@ class Book < ApplicationRecord
 
   include CommonScopes
 
+  def log_history
+    logs.order(id: "DESC")
+  end
+
   def self.ransackable_attributes(auth_object = nil)
     ["name", "isbn", "category_id", "memo" ]
   end

@@ -10,3 +10,20 @@
     <%= button_to "Destroy this book", @book, method: :delete %>
   <% end %>
 </div>
+
+<hr>
+<strong>Log History</strong>
+<table class="log_history">
+  <tr>
+    <th>Date</th>
+    <th>Status</th>
+    <th>User</th>
+  </tr>
+  <% @log_history&.each do |log| %>
+    <tr>
+      <td><%= l(log.updated_at, format: :long) %></td>
+      <td><%= @status_list[log.status] %></td>
+      <td><%= log.user.name %></td>
+    </tr>
+  <% end %>
+</table>

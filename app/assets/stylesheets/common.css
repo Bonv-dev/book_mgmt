@@ -6,3 +6,28 @@ table.top_page td {
   color: #aabbaa;
   pointer-events: none;
 }
+
+.log_history {
+  border-collapse: collapse;
+  width: 100%;
+  overflow-x: auto;
+  display: block;
+  font-variant-numeric: lining-nums tabular-nums;
+
+  caption {
+    margin-bottom: 0.75em;
+  }
+  tbody {
+    margin-top: 0.5em;
+    border: 1px solid #1a1a1a;
+  }
+  th {
+    border: 1px solid #1a1a1a;
+    padding: 0.25em 0.5em 0.25em 0.5em;
+    background-color: #47C403;
+  }
+  td {
+    border: 1px solid #1a1a1a;
+    padding: 0.125em 0.5em 0.25em 0.5em;
+  }
+}
