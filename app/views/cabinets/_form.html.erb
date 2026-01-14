@@ -23,7 +23,7 @@
 
   <div>
     <%= form.label :floor_id, style: "display: block" %>
-    <%= form.text_field :floor_id %>
+    <%= form.select :floor_id, @floor_options, { include_blank: "選択してください" } %>
   </div>
 
   <div>

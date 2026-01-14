@@ -1,5 +1,6 @@
 class CabinetsController < ApplicationController
   before_action :set_cabinet, only: %i[ show edit update destroy ]
+  before_action :set_list
 
   # GET /cabinets or /cabinets.json
   def index
@@ -68,6 +69,11 @@ class CabinetsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_cabinet
       @cabinet = Cabinet.find(params.expect(:id))
+    end
+
+    def set_list
+      @floor_list = Floor.name_list
+      @floor_options = Floor.name_options
     end
 
     # Only allow a list of trusted parameters through.

@@ -23,7 +23,7 @@
 
   <div>
     <%= form.label :cabinet_id, style: "display: block" %>
-    <%= form.text_field :cabinet_id %>
+    <%= form.select :cabinet_id, @cabinet_options, { include_blank: "選択してください" } %>
   </div>
 
   <div>

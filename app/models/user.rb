@@ -11,6 +11,8 @@ class User < ApplicationRecord
   #validates :encrypted_password, presence: true
   #validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, uniqueness: true
 
+  include CommonScopes
+
   def can_manage?
     self&.is_admin? || self&.is_librarian?
   end

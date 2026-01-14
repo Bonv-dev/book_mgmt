@@ -1,5 +1,6 @@
 class LogsController < ApplicationController
   before_action :set_log, only: %i[ show edit update destroy ]
+  before_action :set_list
 
   # GET /logs or /logs.json
   def index
@@ -68,6 +69,13 @@ class LogsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_log
       @log = Log.find(params.expect(:id))
+    end
+
+    def set_list
+      @book_list = Book.name_list
+      @book_options = Book.name_options
+      @user_list = User.name_list
+      @user_options = User.name_options
     end
 
     # Only allow a list of trusted parameters through.

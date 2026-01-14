@@ -13,17 +13,17 @@
 
   <div>
     <%= form.label :status, style: "display: block" %>
-    <%= form.number_field :status %>
+    <%= form.select :status, @status_options, { include_blank: "選択してください" } %>
   </div>
 
   <div>
     <%= form.label :book_id, style: "display: block" %>
-    <%= form.text_field :book_id %>
+    <%= form.select :book_id, @book_options, { include_blank: "選択してください" } %>
   </div>
 
   <div>
     <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
+    <%= form.select :user_id, @user_options, { include_blank: "選択してください" } %>
   </div>
 
   <div>

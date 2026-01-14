@@ -3,4 +3,6 @@ class Step < ApplicationRecord
 
   validates :enabled, inclusion: [true, false]
   validates :name, presence: true, uniqueness: { scope: :cabinet_id }
+
+  include CommonScopes
 end

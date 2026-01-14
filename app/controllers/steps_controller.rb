@@ -1,5 +1,6 @@
 class StepsController < ApplicationController
   before_action :set_step, only: %i[ show edit update destroy ]
+  before_action :set_list
 
   # GET /steps or /steps.json
   def index
@@ -68,6 +69,11 @@ class StepsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_step
       @step = Step.find(params.expect(:id))
+    end
+
+    def set_list
+      @cabinet_list = Cabinet.name_list
+      @cabinet_options = Cabinet.name_options
     end
 
     # Only allow a list of trusted parameters through.

@@ -28,12 +28,12 @@
 
   <div>
     <%= form.label :category_id, style: "display: block" %>
-    <%= form.text_field :category_id %>
+    <%= form.select :category_id, @category_options, { include_blank: "選択してください" } %>
   </div>
 
   <div>
     <%= form.label :step_id, style: "display: block" %>
-    <%= form.text_field :step_id %>
+    <%= form.select :step_id, @step_options, { include_blank: "選択してください" } %>
   </div>
 
   <div>
