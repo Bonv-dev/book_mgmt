@@ -72,3 +72,6 @@ gem "devise-i18n", "~> 1.15"
 gem "pundit", "~> 2.5"
 gem "ransack"
 gem "kaminari"
+group :development do
+  gem "letter_opener_web"
+end

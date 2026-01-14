@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
   get "top_pages/index"
   devise_for :users, controllers: {
     registrations: 'users/registrations',

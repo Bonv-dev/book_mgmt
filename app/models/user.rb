@@ -15,6 +15,8 @@ class User < ApplicationRecord
 
   include CommonScopes
 
+  scope :librarians, -> { enabled_only.where(is_librarian: true).order(:id) }
+
   def can_manage?
     self&.is_admin? || self&.is_librarian?
   end

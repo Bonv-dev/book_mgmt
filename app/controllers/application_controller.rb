@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
+  include LoadSettings
+
   before_action :authenticate_user!
-  before_action :load_settings
 
   include Pundit::Authorization
   after_action :pundit_verify_authorized
@@ -34,12 +35,5 @@ class ApplicationController < ActionController::Base
     added_attrs = [:enabled, :name, :is_admin, :is_librarian]
     devise_parameter_sanitizer.permit(:sign_up, keys: added_attrs)
     devise_parameter_sanitizer.permit(:account_update, keys: added_attrs)
-  end
-
-  # WEB common settings
-  def load_settings
-    @my_settings = Rails.application.config.x.settings
-    @status_list = @my_settings[:status_list]
-    @status_options = @status_list.invert
   end
 end

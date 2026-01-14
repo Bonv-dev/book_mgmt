@@ -29,6 +29,7 @@ class LogsController < ApplicationController
 
   # POST /logs or /logs.json
   def create
+    old_log = Log.latest(log_params[:book_id])
     @log = Log.new(log_params)
     authorize @log
 
@@ -45,6 +46,10 @@ class LogsController < ApplicationController
         #
         @log.book.update(enabled: @log.status!=@my_settings[:status_discard])
         
+        # メールを送るのは司書が操作した＆前回とステータスが異なる時だけ
+        if current_user.is_librarian? && @log.status!=old_log.status
+          send_log_mail(@log, old_log)
+        end
         format.html { redirect_to @log, notice: "Log was successfully created." }
         format.json { render :show, status: :created, location: @log }
       else
@@ -91,6 +96,15 @@ class LogsController < ApplicationController
       @book_options = Book.name_options
       @user_list = User.name_list
       @user_options = User.name_options
+    end
+
+    def send_log_mail(log, old_log)
+      to_users = {
+        @my_settings[:status_storage]=>[log.user],
+        @my_settings[:status_lending]=>[log.user],
+        @my_settings[:status_discard]=>User.librarians
+      }[log.status]
+      LogMailer.change_status_email(log, old_log, current_user, to_users).deliver_now
     end
 
     # Only allow a list of trusted parameters through.
