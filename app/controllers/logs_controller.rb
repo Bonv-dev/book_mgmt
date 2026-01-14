@@ -1,6 +1,9 @@
 class LogsController < ApplicationController
   before_action :set_log, only: %i[ show edit update destroy ]
 
+  # CanCanCan で権限チェック
+  load_and_authorize_resource
+
   # GET /logs or /logs.json
   def index
     @logs = Log.all

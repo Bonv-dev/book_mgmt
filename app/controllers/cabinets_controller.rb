@@ -1,6 +1,9 @@
 class CabinetsController < ApplicationController
   before_action :set_cabinet, only: %i[ show edit update destroy ]
 
+  # CanCanCan で権限チェック
+  load_and_authorize_resource
+
   # GET /cabinets or /cabinets.json
   def index
     @cabinets = Cabinet.all
