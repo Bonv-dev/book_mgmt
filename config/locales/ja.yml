@@ -1,0 +1,6 @@
+ja:
+  devise:
+    failure:
+      unauthenticated: "ログインしてください。"
+      user:
+        unauthenticated: "ログインしてください。"
