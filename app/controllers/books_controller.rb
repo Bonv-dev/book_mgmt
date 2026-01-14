@@ -6,6 +6,7 @@ class BooksController < ApplicationController
   def index
     @q = policy_scope(Book).ransack(params.fetch(:q, {}))
     target_books = @q.result
+    target_books = target_books.where(enabled: true) if current_user.is_ippan?
     @book_count = target_books.length
     @books = target_books
       .page(params[:page])
