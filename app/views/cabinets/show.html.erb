@@ -6,5 +6,7 @@
   <%= link_to "Edit this cabinet", edit_cabinet_path(@cabinet) %> |
   <%= link_to "Back to cabinets", cabinets_path %>
 
-  <%= button_to "Destroy this cabinet", @cabinet, method: :delete %>
+  <% if current_user.is_admin? %>
+    <%= button_to "Destroy this cabinet", @cabinet, method: :delete %>
+  <% end %>
 </div>

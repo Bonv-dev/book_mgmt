@@ -3,25 +3,29 @@ class FloorsController < ApplicationController
 
   # GET /floors or /floors.json
   def index
-    @floors = Floor.all
+    @floors = policy_scope(Floor)
   end
 
   # GET /floors/1 or /floors/1.json
   def show
+    authorize @floor
   end
 
   # GET /floors/new
   def new
     @floor = Floor.new
+    authorize @floor
   end
 
   # GET /floors/1/edit
   def edit
+    authorize @floor
   end
 
   # POST /floors or /floors.json
   def create
     @floor = Floor.new(floor_params)
+    authorize @floor
 
     respond_to do |format|
       if @floor.save
@@ -36,6 +40,8 @@ class FloorsController < ApplicationController
 
   # PATCH/PUT /floors/1 or /floors/1.json
   def update
+    authorize @floor
+
     respond_to do |format|
       if @floor.update(floor_params)
         format.html { redirect_to @floor, notice: "Floor was successfully updated.", status: :see_other }
@@ -49,6 +55,7 @@ class FloorsController < ApplicationController
 
   # DELETE /floors/1 or /floors/1.json
   def destroy
+    authorize @floor
     @floor.destroy!
 
     respond_to do |format|

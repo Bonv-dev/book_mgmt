@@ -3,25 +3,29 @@ class LogsController < ApplicationController
 
   # GET /logs or /logs.json
   def index
-    @logs = Log.all
+    @logs = policy_scope(Log)
   end
 
   # GET /logs/1 or /logs/1.json
   def show
+    authorize @log
   end
 
   # GET /logs/new
   def new
     @log = Log.new
+    authorize @log
   end
 
   # GET /logs/1/edit
   def edit
+    authorize @log
   end
 
   # POST /logs or /logs.json
   def create
     @log = Log.new(log_params)
+    authorize @log
 
     respond_to do |format|
       if @log.save
@@ -36,6 +40,8 @@ class LogsController < ApplicationController
 
   # PATCH/PUT /logs/1 or /logs/1.json
   def update
+    authorize @log
+
     respond_to do |format|
       if @log.update(log_params)
         format.html { redirect_to @log, notice: "Log was successfully updated.", status: :see_other }
@@ -49,6 +55,7 @@ class LogsController < ApplicationController
 
   # DELETE /logs/1 or /logs/1.json
   def destroy
+    authorize @log
     @log.destroy!
 
     respond_to do |format|

@@ -6,5 +6,7 @@
   <%= link_to "Edit this floor", edit_floor_path(@floor) %> |
   <%= link_to "Back to floors", floors_path %>
 
-  <%= button_to "Destroy this floor", @floor, method: :delete %>
+  <% if current_user.is_admin? %>
+    <%= button_to "Destroy this floor", @floor, method: :delete %>
+  <% end %>
 </div>

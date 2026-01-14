@@ -3,25 +3,29 @@ class StepsController < ApplicationController
 
   # GET /steps or /steps.json
   def index
-    @steps = Step.all
+    @steps = policy_scope(Step)
   end
 
   # GET /steps/1 or /steps/1.json
   def show
+    authorize @step
   end
 
   # GET /steps/new
   def new
     @step = Step.new
+    authorize @step
   end
 
   # GET /steps/1/edit
   def edit
+    authorize @step
   end
 
   # POST /steps or /steps.json
   def create
     @step = Step.new(step_params)
+    authorize @step
 
     respond_to do |format|
       if @step.save
@@ -36,6 +40,8 @@ class StepsController < ApplicationController
 
   # PATCH/PUT /steps/1 or /steps/1.json
   def update
+    authorize @step
+
     respond_to do |format|
       if @step.update(step_params)
         format.html { redirect_to @step, notice: "Step was successfully updated.", status: :see_other }
@@ -49,6 +55,7 @@ class StepsController < ApplicationController
 
   # DELETE /steps/1 or /steps/1.json
   def destroy
+    authorize @step
     @step.destroy!
 
     respond_to do |format|

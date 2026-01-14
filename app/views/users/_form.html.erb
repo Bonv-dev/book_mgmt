@@ -12,8 +12,13 @@
   <% end %>
 
   <div>
-    <%= form.label :enabled, style: "display: block" %>
-    <%= form.checkbox :enabled %>
+    <% unless current_user.is_ippan? %>
+      <%= form.label :enabled, style: "display: block" %>
+      <%= form.checkbox :enabled %>
+    <% else %>
+      <strong>Enabled:</strong>
+      <%= user.enabled %>
+    <% end %>
   </div>
 
   <div>
@@ -27,13 +32,23 @@
   </div>
 
   <div>
-    <%= form.label :is_admin, style: "display: block" %>
-    <%= form.checkbox :is_admin %>
+    <% if current_user.is_admin? %>
+      <%= form.label :is_admin, style: "display: block" %>
+      <%= form.checkbox :is_admin %>
+    <% elsif current_user.is_librarian? %>
+      <strong>Is admin:</strong>
+      <%= user.is_admin %>
+    <% end %>
   </div>
 
   <div>
-    <%= form.label :is_librarian, style: "display: block" %>
-    <%= form.checkbox :is_librarian %>
+    <% if current_user.is_admin? %>
+      <%= form.label :is_librarian, style: "display: block" %>
+      <%= form.checkbox :is_librarian %>
+    <% elsif current_user.is_librarian? %>
+      <strong>Is librarian:</strong>
+      <%= user.is_librarian %>
+    <% end %>
   </div>
 
   <div>

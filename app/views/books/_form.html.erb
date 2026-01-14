@@ -13,7 +13,7 @@
 
   <div>
     <%= form.label :enabled, style: "display: block" %>
-    <%= form.checkbox :enabled %>
+    <%= form.checkbox :enabled, { disabled: current_user.is_admin? ? false:true } %>
   </div>
 
   <div>

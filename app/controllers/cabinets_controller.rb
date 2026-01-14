@@ -3,25 +3,29 @@ class CabinetsController < ApplicationController
 
   # GET /cabinets or /cabinets.json
   def index
-    @cabinets = Cabinet.all
+    @cabinets = policy_scope(Cabinet)
   end
 
   # GET /cabinets/1 or /cabinets/1.json
   def show
+    authorize @cabinet
   end
 
   # GET /cabinets/new
   def new
     @cabinet = Cabinet.new
+    authorize @cabinet
   end
 
   # GET /cabinets/1/edit
   def edit
+    authorize @cabinet
   end
 
   # POST /cabinets or /cabinets.json
   def create
     @cabinet = Cabinet.new(cabinet_params)
+    authorize @cabinet
 
     respond_to do |format|
       if @cabinet.save
@@ -36,6 +40,8 @@ class CabinetsController < ApplicationController
 
   # PATCH/PUT /cabinets/1 or /cabinets/1.json
   def update
+    authorize @cabinet
+
     respond_to do |format|
       if @cabinet.update(cabinet_params)
         format.html { redirect_to @cabinet, notice: "Cabinet was successfully updated.", status: :see_other }
@@ -49,6 +55,7 @@ class CabinetsController < ApplicationController
 
   # DELETE /cabinets/1 or /cabinets/1.json
   def destroy
+    authorize @cabinet
     @cabinet.destroy!
 
     respond_to do |format|

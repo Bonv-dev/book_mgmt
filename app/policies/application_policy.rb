@@ -8,33 +8,14 @@ class ApplicationPolicy
     @record = record
   end
 
-  def index?
-    false
-  end
-
-  def show?
-    false
-  end
-
-  def create?
-    false
-  end
-
-  def new?
-    create?
-  end
-
-  def update?
-    false
-  end
-
-  def edit?
-    update?
-  end
-
-  def destroy?
-    false
-  end
+  # === デフォルトはすべて拒否 ===
+  def index?   = false
+  def show?    = false
+  def create?  = false
+  def new?     = false
+  def update?  = false
+  def edit?    = false
+  def destroy? = false
 
   class Scope
     def initialize(user, scope)
@@ -43,7 +24,7 @@ class ApplicationPolicy
     end
 
     def resolve
-      raise NoMethodError, "You must define #resolve in #{self.class}"
+      raise Pundit::NotAuthorizedError   # デフォルト拒否
     end
 
     private
