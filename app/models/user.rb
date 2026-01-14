@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :validatable
 
+  has_many :logs, dependent: :restrict_with_error
+
   validates :enabled, inclusion: [true, false]
   validates :name, presence: true
   validates :is_admin, inclusion: [true, false]

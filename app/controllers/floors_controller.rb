@@ -56,11 +56,15 @@ class FloorsController < ApplicationController
   # DELETE /floors/1 or /floors/1.json
   def destroy
     authorize @floor
-    @floor.destroy!
 
     respond_to do |format|
-      format.html { redirect_to floors_path, notice: "Floor was successfully destroyed.", status: :see_other }
-      format.json { head :no_content }
+      if @floor.destroy
+        format.html { redirect_to floors_path, notice: "Floor was successfully destroyed.", status: :see_other }
+        format.json { head :no_content }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @floor.errors, status: :unprocessable_entity }
+      end
     end
   end
 

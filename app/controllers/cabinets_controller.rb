@@ -57,11 +57,15 @@ class CabinetsController < ApplicationController
   # DELETE /cabinets/1 or /cabinets/1.json
   def destroy
     authorize @cabinet
-    @cabinet.destroy!
 
     respond_to do |format|
-      format.html { redirect_to cabinets_path, notice: "Cabinet was successfully destroyed.", status: :see_other }
-      format.json { head :no_content }
+      if @cabinet.destroy
+        format.html { redirect_to cabinets_path, notice: "Cabinet was successfully destroyed.", status: :see_other }
+        format.json { head :no_content }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @cabinet.errors, status: :unprocessable_entity }
+      end
     end
   end
 

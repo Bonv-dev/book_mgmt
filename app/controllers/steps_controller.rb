@@ -57,11 +57,15 @@ class StepsController < ApplicationController
   # DELETE /steps/1 or /steps/1.json
   def destroy
     authorize @step
-    @step.destroy!
 
     respond_to do |format|
-      format.html { redirect_to steps_path, notice: "Step was successfully destroyed.", status: :see_other }
-      format.json { head :no_content }
+      if @step.destroy
+        format.html { redirect_to steps_path, notice: "Step was successfully destroyed.", status: :see_other }
+        format.json { head :no_content }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @step.errors, status: :unprocessable_entity }
+      end
     end
   end
 
