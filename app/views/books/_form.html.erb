@@ -22,7 +22,8 @@
     <%= link_to "ステータス変更",
         new_log_path(
           log: { status: @latest_log.status, book_id: book.id, user_id: @latest_log.user_id }
-        )
+        ),
+        class: "#{'disabled' if @latest_log[:status]==@my_settings[:status_discard]}"
     %>
   </div>
 
