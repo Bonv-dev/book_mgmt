@@ -17,6 +17,11 @@
   <% end %>
 
   <div>
+    <%= form.label :status, style: "display: block" %>
+    <%= @status_list[@latest_statuses[book.id]] %>
+  </div>
+
+  <div>
     <%= form.label :enabled, style: "display: block" %>
     <%= form.checkbox :enabled, { disabled: current_user.is_admin? ? false:true } %>
   </div>

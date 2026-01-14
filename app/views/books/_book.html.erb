@@ -1,5 +1,10 @@
 <div id="<%= dom_id book %>">
   <div>
+    <strong>Status:</strong>
+    <%= @status_list[@latest_statuses[book.id]] %>
+  </div>
+
+  <div>
     <strong>Enabled:</strong>
     <%= book.enabled %>
   </div>

@@ -106,6 +106,7 @@ class BooksController < ApplicationController
       @category_options = Category.name_options
       @step_list = Step.floor_cabinet_step_list
       @step_options = Step.name_options
+      @latest_statuses = Log.latest_list.pluck(:book_id, :status).to_h
     end
 
     def prepare_place
