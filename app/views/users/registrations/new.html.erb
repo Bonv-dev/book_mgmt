@@ -21,6 +21,26 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
+  <div class="field">
+    <%= f.label :enabled %>
+    <%= f.checkbox :enabled %>
+  </div>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :is_admin %>
+    <%= f.checkbox :is_admin %>
+  </div>
+
+  <div class="field">
+    <%= f.label :is_librarian %>
+    <%= f.checkbox :is_librarian %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
