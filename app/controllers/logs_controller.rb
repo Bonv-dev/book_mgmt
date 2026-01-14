@@ -34,6 +34,17 @@ class LogsController < ApplicationController
 
     respond_to do |format|
       if @log.save
+        # 廃棄→bookを無効に。その他→有効に。
+        #
+        # ただし、無効から有効への遷移は少々面倒。
+        # logs.new/edit の画面で無効な book はリストに出ないので選択できない。
+        # なので、無効を有効に戻したい場合は、
+        # アドミンが以下の操作をする必要あり。
+        # 1. books.edit で enabled を true にする
+        # 2. 該当 book の最新 log の status を "利用可" に変更する
+        #
+        @log.book.update(enabled: @log.status!=@my_settings[:status_discard])
+        
         format.html { redirect_to @log, notice: "Log was successfully created." }
         format.json { render :show, status: :created, location: @log }
       else
