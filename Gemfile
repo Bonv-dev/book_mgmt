@@ -68,3 +68,4 @@ gem 'rails-i18n', '~> 8.0.0' # For Rails >= 8.0.0
 gem "fiddle", require: false
 
 gem "devise"
+gem "devise-i18n", "~> 1.15"
