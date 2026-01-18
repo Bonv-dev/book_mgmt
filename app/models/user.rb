@@ -4,6 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :validatable
 
+  def active_for_authentication?
+    super && enabled?
+  end
+
   has_many :logs, dependent: :restrict_with_error
 
   validates :enabled, inclusion: [true, false]
