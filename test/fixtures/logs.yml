@@ -9,3 +9,15 @@ two:
   status: 1
   book: two
   user: two
+
+old_log:
+  status: 2
+  book: one
+  user: one
+
+new_log:
+  status: 1
+  book: one
+  user: one
+
+
