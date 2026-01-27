@@ -10,6 +10,11 @@ two:
   name: step_two
   cabinet: two
 
+two_2:
+  enabled: true
+  name: step_two_2
+  cabinet: two_2
+
 deletable:
   enabled: true
   name: step_deletable

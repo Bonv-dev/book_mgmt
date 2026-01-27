@@ -10,6 +10,11 @@ two:
   name: C101
   floor: two
 
+two_2:
+  enabled: true
+  name: C102
+  floor: two
+
 deletable:
   enabled: true
   name: deletable
