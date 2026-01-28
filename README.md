@@ -1,24 +1,6 @@
-# README
+# 使用方法
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+book_mgmt は、Ruby on Rails で作成した WEBアプリのサンプルです。  
+詳細は
+Bon/V の [Rails8 WEB開発入門](https://www.eonet.ne.jp/~bonv/rails_app/index.html) 
+を参照してください。
