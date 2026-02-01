@@ -29,7 +29,7 @@ class CabinetPolicy < ApplicationPolicy
       unless user.is_admin?
         raise Pundit::NotAuthorizedError, "一覧は見れません"
       end
-      return scope.all
+      scope.all
     end
   end
 end

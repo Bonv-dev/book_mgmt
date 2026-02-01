@@ -46,7 +46,7 @@ class UsersController < ApplicationController
       redirect_to root_path, alert: message, status: :see_other
       return
     end
-    
+
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: "User was successfully updated.", status: :see_other }

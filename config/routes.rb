@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   end
   get "top_pages/index"
   devise_for :users, controllers: {
-    registrations: 'users/registrations',
-    sessions: 'users/sessions'
+    registrations: "users/registrations",
+    sessions: "users/sessions"
   }
   resources :logs
   resources :books do

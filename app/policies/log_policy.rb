@@ -29,7 +29,7 @@ class LogPolicy < ApplicationPolicy
       if user.is_ippan?
         raise Pundit::NotAuthorizedError, "一覧は見れません"
       end
-      return scope.all
+      scope.all
     end
   end
 end

@@ -11,5 +11,5 @@ class Log < ApplicationRecord
   }
 
   # 指定した book_id の最新ログ
-  scope :latest, -> (book_id){ where(book_id: book_id).order(id: "DESC").first }
+  scope :latest, ->(book_id) { where(book_id: book_id).order(id: "DESC").first }
 end

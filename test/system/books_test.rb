@@ -9,7 +9,6 @@ class BooksTest < ApplicationSystemTestCase
 
   # -n test_should_get_index
   test "should get index" do
-
     # Books 一覧へ
     visit books_path
 

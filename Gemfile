@@ -62,7 +62,7 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem 'rails-i18n', '~> 8.0.0' # For Rails >= 8.0.0
+gem "rails-i18n", "~> 8.0.0" # For Rails >= 8.0.0
 
 # aviod "warning: fiddle/import is found in fiddle, which will no longer be part of the default gems starting from Ruby 3.5.0."
 gem "fiddle", require: false
