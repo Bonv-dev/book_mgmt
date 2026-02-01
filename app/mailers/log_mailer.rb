@@ -5,7 +5,7 @@ class LogMailer < ApplicationMailer
     @old_status = old_log.status
     @from_user = from_user
     mail(
-      to: to_users.map{|u| u.email}.join("; "),
+      to: to_users.map { |u| u.email }.join("; "),
       from: @from_user.email,
       subject: "蔵書のステータス変更"
     )

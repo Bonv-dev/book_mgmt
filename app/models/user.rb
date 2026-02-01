@@ -10,12 +10,12 @@ class User < ApplicationRecord
 
   has_many :logs, dependent: :restrict_with_error
 
-  validates :enabled, inclusion: [true, false]
+  validates :enabled, inclusion: [ true, false ]
   validates :name, presence: true
-  validates :is_admin, inclusion: [true, false]
-  validates :is_librarian, inclusion: [true, false]
-  #validates :encrypted_password, presence: true
-  #validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, uniqueness: true
+  validates :is_admin, inclusion: [ true, false ]
+  validates :is_librarian, inclusion: [ true, false ]
+  # validates :encrypted_password, presence: true
+  # validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, uniqueness: true
 
   include CommonScopes
 

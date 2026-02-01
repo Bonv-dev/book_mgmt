@@ -1,11 +1,11 @@
-require 'test_helper'
+require "test_helper"
 
 class BookPolicyTest < ActiveSupport::TestCase
   def setup
     @admin      = users(:admin)
     @librarian  = users(:librarian)
     @ippan      = users(:one)
-    
+
     @book = books(:one)
   end
 

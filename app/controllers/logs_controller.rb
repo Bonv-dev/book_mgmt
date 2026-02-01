@@ -45,7 +45,7 @@ class LogsController < ApplicationController
         # 2. 該当 book の最新 log の status を "利用可" に変更する
         #
         @log.book.update(enabled: @log.status!=@my_settings[:status_discard])
-        
+
         # メールを送るのは司書が操作した＆前回とステータスが異なる時だけ
         if current_user.is_librarian? && @log.status!=old_log.status
           send_log_mail(@log, old_log)
@@ -100,8 +100,8 @@ class LogsController < ApplicationController
 
     def send_log_mail(log, old_log)
       to_users = {
-        @my_settings[:status_storage]=>[log.user],
-        @my_settings[:status_lending]=>[log.user],
+        @my_settings[:status_storage]=>[ log.user ],
+        @my_settings[:status_lending]=>[ log.user ],
         @my_settings[:status_discard]=>User.librarians
       }[log.status]
       LogMailer.change_status_email(log, old_log, current_user, to_users).deliver_now

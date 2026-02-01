@@ -41,7 +41,7 @@ class BookPolicy < ApplicationPolicy
   # 一覧のスコープ
   class Scope < Scope
     def resolve
-      return scope.all
+      scope.all
     end
   end
 end
