@@ -2,7 +2,7 @@ class Step < ApplicationRecord
   belongs_to :cabinet
   has_many :books, dependent: :restrict_with_error
 
-  validates :enabled, inclusion: [true, false]
+  validates :enabled, inclusion: [ true, false ]
   validates :name, presence: true, uniqueness: { scope: :cabinet_id }
 
   include CommonScopes
@@ -11,7 +11,7 @@ class Step < ApplicationRecord
     def floor_cabinet_step_list
       Step.joins(cabinet: :floor)
         .pluck("steps.id, floors.name, cabinets.name, steps.name")
-        .map { |id, fname, cname, sname| [id, "[#{fname}] [#{cname}] #{sname}"] }.to_h
+        .map { |id, fname, cname, sname| [ id, "[#{fname}] [#{cname}] #{sname}" ] }.to_h
     end
   end
 end

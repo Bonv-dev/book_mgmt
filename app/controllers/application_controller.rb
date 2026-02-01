@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
   end
 
   def configure_permitted_parameters
-    added_attrs = [:enabled, :name, :is_admin, :is_librarian]
+    added_attrs = [ :enabled, :name, :is_admin, :is_librarian ]
     devise_parameter_sanitizer.permit(:sign_up, keys: added_attrs)
     devise_parameter_sanitizer.permit(:account_update, keys: added_attrs)
   end

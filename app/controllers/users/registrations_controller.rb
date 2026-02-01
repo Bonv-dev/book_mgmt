@@ -2,7 +2,7 @@
 
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :authenticate_user!
-  before_action :authorize_admin, only: [:new, :create, :destroy]
+  before_action :authorize_admin, only: [ :new, :create, :destroy ]
 
   private
 
