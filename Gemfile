@@ -75,3 +75,5 @@ gem "kaminari"
 group :development do
   gem "letter_opener_web"
 end
+
+gem "pg", "~> 1.6"
