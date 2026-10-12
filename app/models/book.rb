@@ -16,4 +16,7 @@ class Book < ApplicationRecord
   def self.ransackable_attributes(auth_object = nil)
     [ "name", "isbn", "category_id", "memo" ]
   end
+  def self.ransackable_associations(auth_object = nil)
+    [ "category" ]
+  end
 end
